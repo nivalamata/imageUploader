@@ -1,0 +1,112 @@
+<!-- shows image details -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title"> {{ image.title}}</h2>
+    </div>
+    <div class="panel-body">
+        <p> {{image.description}}</p>
+        <div class="col-md-12 text-center">
+            <img src="/public/upload/{{image.filename}}" class="img-thumbnail">
+        </div>
+    </div>
+    <!-- end panel body -->
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" id="btn-like" class="btn btn-success" data-id="{{image.uniqueId}}">
+                    <i class="fa fa-heart">Like </i> Upload image
+                </button>
+                <strong class="likes-count">
+            	{{image.likes}}
+            </strong> &nbsp; - &nbsp;
+                <i class="fa fa-eye"></i>
+                <strong>
+            	{{image.views}}
+            </strong> &nbsp; - &nbsp; Posted:
+                <em class="text-muted">
+            	{{timeago image.timestamp}}
+            </em>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- enable user to post comments -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-8">
+                <strong class="panel-title">
+	            Comments
+                </strong>
+            </div>
+            <div class="col-md-4 text-right">
+                   <button id="btn-comment" class="btn btn-default btn-sm" data-id="{{image.uniqueId}}">
+                    <i class="fa fa-comments-o"> Post comment.... </i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <blockquote id="post-comment">
+            <div class="row">
+                <!-- allow user to post comments -->
+                <!--  user submit name, email and comments -->
+                <form method="post" action="/images/{{image.uniqueId}}/comment">
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label" for="name">
+                            Name:
+                        </label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label" for="email">
+                            Email:
+                        </label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-sm-2 control-label" for="comment">
+                            Comment:
+                        </label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" type="text" name="comment" rows="2">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" id="comment-btn" class="btn btn-success" type="button">
+                                <i class="fa fa-cloud-upload"> </i> Post
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </blockquote>
+        <ul class="media-list">
+            {{#each comments}}
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45">
+                    </a>
+                    <div class="media-body">
+                        {{comment}}
+                        <br>
+                        <strong class="media-heading">
+                          {{name}}
+                    	
+                         </strong>
+                        <small class="text-muted">
+                          {{timeago timestamp}}
+                    	
+                        </small>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

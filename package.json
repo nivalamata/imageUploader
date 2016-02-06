@@ -1,0 +1,21 @@
+{
+  "name": "imguploader",
+  "version": "0.0.1",
+  "description": "uploads and show images",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "img",
+    "uploader"
+  ],
+  "author": "nivalamata",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^3.5.3",
+    "express3-handlebars": "^0.5.2",
+    "moment": "^2.11.1",
+    "mongoose": "^4.1.6"
+  }
+}
