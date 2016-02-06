@@ -18,7 +18,7 @@ app.set("views", __dirname + "/views"); //__dirname ->global variable per module
 app = config(app);
 //connect to mongoDb server
 mongoose.connect("mongodb://localhost/imguploader");
-mongoose.on("open", function() {
+mongoose.connection.on("open", function() {
 	console.log("Mongoose connected");
 });
 
